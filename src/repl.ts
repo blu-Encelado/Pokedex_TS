@@ -1,4 +1,5 @@
 import readline from "readline";
+import { getCommands } from "./commands/commandsRegistry";
 
 export function startREPL() {
     const rl = readline.createInterface({
@@ -6,7 +7,7 @@ export function startREPL() {
         output: process.stdout,
         prompt: "Pokedex > "
     });
-
+    console.log("Welcome to the Pokedex!")
     rl.prompt();
 
     rl.on("line", (input) => {
@@ -14,12 +15,25 @@ export function startREPL() {
         if (n.length === 0) {
             rl.prompt();
         } else {
-            console.log(`Your command was: ${n[0]}`)
+            parseCommand(n[0]);
             rl.prompt();
         }
     });
 }
 
+function parseCommand(input: string): void {
+    const cmd = getCommands()[input];
+    if (!cmd) {
+        console.log("Unknown command")
+    } else {
+        try {
+            cmd.callback(getCommands());
+        } catch (err) {
+            console.log(err);
+        }
+    } 
+}
+    
 
 export function cleanInput(input: string): string[] {
 
