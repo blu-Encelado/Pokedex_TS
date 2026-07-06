@@ -1,9 +1,11 @@
 import { getCommands } from "./commandsRegistry"
+import { State } from "./state"
 
-export function commandHelp() {
+export async function commandHelp(state: State) {
     console.log("Usage: ")
-    console.log("       ")
-    for (const cmd in getCommands()) {
-        console.log(`${cmd}: ${getCommands()[cmd].description}`)
+    console.log()
+    for (const cmd of Object.values(state.commands)) {
+        console.log(`${cmd.name}: ${cmd.description}`)
     }
+    console.log();
 };
