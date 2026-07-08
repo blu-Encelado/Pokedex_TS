@@ -12,19 +12,24 @@ export function startREPL(state: State) {
         if (n.length === 0) {
             state.readline.prompt();
         } else {
-            parseCommand(n[0], state);
+            parseCommand(n, state);
             state.readline.prompt();
         }
     });
 }
 
-async function parseCommand(input: string, state: State) {
-    const cmd = getCommands()[input];
+async function parseCommand(input: string[], state: State) {
+    const cmd = getCommands()[input[0]];
     if (!cmd) {
         console.log("Unknown command")
     } else {
         try {
-            await cmd.callback(state);
+            if (input[0] === "explore") {
+                await cmd.callback(state, input[1]);
+            } else {
+                await cmd.callback(state);
+            }
+            
         } catch (err) {
             console.log((err as Error).message);
         }

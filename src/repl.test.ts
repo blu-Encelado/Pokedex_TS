@@ -1,5 +1,6 @@
-import { cleanInput } from "./repl";
-import {describe, expect, test } from "vitest";
+import { cleanInput } from "./repl.js";
+import { describe, expect, test } from "vitest";
+
 
 describe.each([
   {
@@ -20,3 +21,4 @@ describe.each([
     }
   });
 });
+
