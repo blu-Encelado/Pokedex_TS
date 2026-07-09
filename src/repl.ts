@@ -24,7 +24,7 @@ async function parseCommand(input: string[], state: State) {
         console.log("Unknown command")
     } else {
         try {
-            if (input[0] === "explore") {
+            if (input[0] === "explore" || input[0] === "catch") {
                 await cmd.callback(state, input[1]);
             } else {
                 await cmd.callback(state);

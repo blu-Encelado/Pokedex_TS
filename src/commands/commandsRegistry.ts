@@ -1,3 +1,4 @@
+import { commandCatch } from "./command_catch";
 import { commandExit } from "./command_exit";
 import { commandExplore } from "./command_explore";
 import { commandMapForward, commandMapBack } from "./command_map";
@@ -31,6 +32,11 @@ export function getCommands(): Record<string, CLICommand> {
             name: "explore",
             description: "Explore a single area, show the pokemon present",
             callback: commandExplore,
+        },
+        catch: {
+            name: "catch",
+            description: "Try catch a pokemon writing its name",
+            callback: commandCatch,
         }
     }
 };
