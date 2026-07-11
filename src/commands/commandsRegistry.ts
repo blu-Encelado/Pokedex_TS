@@ -1,7 +1,9 @@
 import { commandCatch } from "./command_catch";
 import { commandExit } from "./command_exit";
 import { commandExplore } from "./command_explore";
+import { commandInspect } from "./command_inspect";
 import { commandMapForward, commandMapBack } from "./command_map";
+import { commandPokedex } from "./command_pokedex";
 import { commandHelp } from "./commands_help";
 import { CLICommand } from "./state";
 
@@ -37,6 +39,16 @@ export function getCommands(): Record<string, CLICommand> {
             name: "catch",
             description: "Try catch a pokemon writing its name",
             callback: commandCatch,
-        }
+        },
+        inspect: {
+            name: "inspect",
+            description: "Show the stats of a catched pokemon",
+            callback: commandInspect,
+        },
+        pokedex: {
+            name: "pokedex",
+            description: "Show the name of all pokemon that you have in you pokedex",
+            callback: commandPokedex,
+        },
     }
 };
